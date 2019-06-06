@@ -1,0 +1,141 @@
+swagger: "2.0"
+info:
+  description: "Сервис для создания опросов"
+  version: "1.0.0"
+  title: "WhereToGo"
+host: "wheretg.by"
+basePath: "/api"
+schemes:
+- "https"
+- "http"
+paths:
+  /auth/sighup:
+    post:
+      summary: "Регистрация нового пользователя"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "SignUp"
+        required: true
+        schema:
+          $ref: "#/definitions/SignUpForm"
+      responses:
+        200:
+          description: "Пользователь успешно зарегестрирован"
+        422:
+          description: "Отправлены некорректные данные"
+  /auth/sighin:
+    post:
+      summary: "Авторизация пользователя"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "SignIn"
+        required: true
+        schema:
+          $ref: "#/definitions/SignInForm"
+      responses:
+        200:
+          description: "Пользователь успешно авторизирован"
+        422:
+          description: "Отправлены некорректные данные"
+  /users/{idUser}:
+    get:
+      description: "Возвращает пользователя"
+      produces:
+      - "application/json"
+      parameters: 
+        - in: "path"
+          name: "idUser"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Пользователь успешно авторизирован"
+          schema:
+            $ref: "#/definitions/UserData"
+        422:
+          description: "Отправлены некорректные данные"
+  /users/{idUser}/create:
+    post:
+      description: "Создание опроса"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "CreatePoll"
+          required: true
+          schema:
+            $ref: "#/definitions/CreatePollForm"
+        - in: "path"
+          name: "idUser"
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Опрос успешно создан"
+        422:
+          description: "Отправлены некорректные данные"
+definitions:
+  SignUpForm:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "Han Zamay"
+      email:
+        type: "string"
+        example: "test@test.com"
+      password:
+        type: "string"
+        example: "qwerty123"
+      password_confirmation:
+        type: "string"
+        example: "qwerty123"
+  SignInForm:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+        example: "test@test.com"
+      password:
+        type: "string"
+        example: "qwerty123"
+  CreatePollForm:
+    type: "object"
+    properties:
+      user:
+        $ref: "#/definitions/User"
+      idUser:
+        $ref: "#/definitions/UserId"
+  UserId:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        example: "5345"
+  UserData:
+    type: "object"
+    properties:
+      user:
+       $ref: "#/definitions/User"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        example: "228"
+      name:
+        type: "string"
+        example: "Андрей Замай Андреевич"
+      email:
+        type: "string"
+        example: "han@zamay.by"
