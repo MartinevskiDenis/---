@@ -1,0 +1,36 @@
+table{
+	vertical-align: middle;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+td{
+	border: 0;
+	padding: 7px;
+}
+
+td.Contacts{
+	font-family: "Arial";
+	font-size: 16px;
+	font-style: italic;
+	vertical-align: middle;
+	text-align: right;
+	padding-top: 5px;
+	padding-right: 14px;
+	padding-bottom: 1px;
+}
+
+td.Name{
+	font-family: "Comic Sans MS";
+	vertical-align: bottom;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+a{
+	text-decoration: none;
+}
