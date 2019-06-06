@@ -139,3 +139,6 @@ definitions:
       email:
         type: "string"
         example: "han@zamay.by"
+      password:
+        type: "integer"
+        example: "qwerty123"
